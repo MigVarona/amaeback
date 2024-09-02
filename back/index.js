@@ -1,19 +1,27 @@
-// index.js
 import express from 'express';
-import connectDB from './config/database.js';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { createUser } from './login/userController.js';
+import { loginUser } from './login/userController.js'; // Ajusta la ruta
 
 dotenv.config();
 
-connectDB();
+// Conectar a MongoDB
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('Conectado a MongoDB correctamente'))
+.catch(err => console.error('Error al conectar a MongoDB', err));
 
 // Inicializar Express
 const app = express();
 
-app.use(express.json());
+// Middleware
+app.use(express.json()); // Analiza JSON automáticamente
+app.use(express.urlencoded({ extended: true })); // Analiza datos de formularios si es necesario
 
-app.post('/api/login/users', createUser);
+// Rutas
+app.post('/api/login', loginUser); // Ajusta la ruta si es necesario
 
 const PORT = process.env.PORT || 5000;
 

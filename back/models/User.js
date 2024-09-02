@@ -1,22 +1,11 @@
 import mongoose from 'mongoose';
 
-// Definir el esquema del usuario
 const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
 }, {
-  timestamps: true,
+  timestamps: true // Añade createdAt y updatedAt automáticamente
 });
 
 const User = mongoose.model('User', userSchema);
