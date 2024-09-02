@@ -1,4 +1,3 @@
-// models/User.js
 import mongoose from 'mongoose';
 
 // Definir el esquema del usuario
@@ -20,8 +19,6 @@ const userSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-// Crear el modelo de usuario
 const User = mongoose.model('User', userSchema);
 
-// Exportar el modelo
 export default User;
