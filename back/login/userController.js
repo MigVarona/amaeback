@@ -5,21 +5,20 @@ export const loginUser = async (req, res) => {
   const { name, password } = req.body;
 
   try {
-    const user = await User.findOne({ name });
+    const user = await User.findOne({ name }); // Busca por nombre de usuario
 
     if (!user) {
-      return res.status(401).json({ message: 'Nombre o contraseña incorrectos' });
+      // Usuario no encontrado
+      return res.status(401).json({ message: 'Usuario no encontrado' });
     }
 
-    if (password !== user.password) {  
-      return res.status(401).json({ message: 'Nombre o contraseña incorrectos' });
+    const isMatch = password === user.password; // Comparación simple para texto plano
+
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Contraseña incorrecta' });
     }
 
-    const token = jwt.sign(
-      { id: user._id, name: user.name, email: user.email },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
+    const token = "dummy-token"; 
 
     res.status(200).json({ message: 'Login exitoso', token });
   } catch (error) {
