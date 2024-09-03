@@ -15,14 +15,11 @@ export const loginUser = async (req, res) => {
     const isMatch = password === user.password; // Comparación simple para texto plano
 
     if (!isMatch) {
-      // Contraseña incorrecta
       return res.status(401).json({ message: 'Contraseña incorrecta' });
     }
 
-    // Aquí generas un token para el usuario
-    const token = "dummy-token"; // Genera un token de ejemplo
+    const token = "dummy-token"; 
 
-    // Respuesta exitosa
     res.status(200).json({ message: 'Login exitoso', token });
   } catch (error) {
     console.error(error);
