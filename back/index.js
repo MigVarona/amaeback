@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { loginUser } from './login/userController.js'; 
+import cors from 'cors'; // Importa cors
+
 
 dotenv.config();
 
@@ -11,6 +13,8 @@ mongoose.connect(process.env.MONGODB_URI)
 
 
 const app = express();
+app.use(cors());
+
 
 // Middleware
 app.use(express.json()); 
