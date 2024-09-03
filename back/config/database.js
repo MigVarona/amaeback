@@ -5,7 +5,6 @@ dotenv.config();
 
 const mongoURI = process.env.MONGODB_URI;
 
-// Función para conectar a MongoDB
 const connectDB = async () => {
   try {
     await mongoose.connect(mongoURI, {
@@ -15,9 +14,8 @@ const connectDB = async () => {
     console.log('Conectado a MongoDB correctamente');
   } catch (err) {
     console.error('Error al conectar a MongoDB:', err);
-    process.exit(1); // Salir del proceso con fallo
+    process.exit(1); 
   }
 };
 
-// Exportar la función de conexión
 export default connectDB;
